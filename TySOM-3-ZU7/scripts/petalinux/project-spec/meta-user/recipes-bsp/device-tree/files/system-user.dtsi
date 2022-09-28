@@ -1,0 +1,49 @@
+/include/ "system-conf.dtsi"
+/ {
+    memory {
+        reg = <0x0 0x0 0x0 0x7ff00000 0x8 0x0 0x0 0x80000000>;
+    };
+};
+
+&axi_fifo_mm_s_o {
+	xlnx,tx-max-pkt-size = <257>; 
+	xlnx,rx-min-pkt-size = <255>;
+};
+
+&nand0{
+	status = "disabled";
+};
+
+
+&gem2 {
+	status = "okay";
+	phy-handle = <&phy0>;
+	phy-mode = "rgmii-id";
+    xlnx,ptp-enet-clock = <0x0>;
+	phy-reset-gpio = <&gpio 10 1>;
+	phy-reset-duration = <2>;
+	phy-reset-active-low = <1>;
+	local-mac-address = [00 0a 35 00 00 00];
+	phy0: phy@9 {
+			reg = <0x9>;
+			ti,rx-internal-delay = <0x8>;
+			ti,tx-internal-delay = <0xa>;
+			ti,fifo-depth = <0x1>;
+		};
+};
+&gem3 {
+	status = "okay";
+	phy-handle = <&phy1>;
+	phy-mode = "rgmii-id";
+	phy-reset-gpio = <&gpio 11 1>;
+	phy-reset-duration = <2>;
+	phy-reset-active-low = <1>;
+	local-mac-address = [00 0a 35 00 00 01];
+	phy1: phy@9 {
+		reg = <0x9>;
+		ti,rx-internal-delay = <0x8>;
+		ti,tx-internal-delay = <0xa>;
+		ti,fifo-depth = <0x1>;
+		ti,rxctrl-strap-worka;
+	};
+};

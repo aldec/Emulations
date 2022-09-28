@@ -1,0 +1,8 @@
+/include/ "system-conf.dtsi"
+/ {
+};
+
+&axi_fifo_mm_s_o {
+	xlnx,tx-max-pkt-size = <257>; 
+	xlnx,rx-min-pkt-size = <255>;
+};
