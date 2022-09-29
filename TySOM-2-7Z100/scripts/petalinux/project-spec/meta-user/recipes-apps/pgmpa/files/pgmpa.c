@@ -251,6 +251,14 @@ int main(int argc, char *argv[])
     unsigned int read_buff[512];
     printf("\n\nRESULT\n");
     ssize_t bytes_read = read(f_out, &read_buff, 512);
+    
+    /* reset the fifo core  */
+    rc = ioctl(f_out, AXIS_FIFO_RESET_IP);
+    if (rc) {
+        perror("ioctl");
+        return -1;
+    }
+    
     close(f_out);
 
     for (int i = 0; i < bytes_read/8; ++i) {

@@ -21,6 +21,8 @@ do_install() {
     install -m 0744 ${WORKDIR}/driver/powernn/powernn_100/busB.sim ${D}/home/petalinux/pgmpa/powernn/powernn_100/busB.sim
     install -m 0744 ${WORKDIR}/driver/powernn/powernn_100/prog.sim ${D}/home/petalinux/pgmpa/powernn/powernn_100/prog.sim
     install -m 0755 pgmpa ${D}/home/petalinux/pgmpa/
+    install -m 0744 ${WORKDIR}/pgmpa.c ${D}/home/petalinux/pgmpa/pgmpa.c
+    install -m 0744 ${WORKDIR}/axis-fifo.h ${D}/home/petalinux/pgmpa/axis-fifo.h
 }
 
 DEBUG_FLAGS = "-Wall -g3 -O0"
