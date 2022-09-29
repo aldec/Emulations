@@ -12,10 +12,9 @@ cd $project_name
 petalinux-config --get-hw-description=./../hardware --silentconfig
 petalinux-create -t apps --template c --name pgmpa
 cp -rf ../scripts/petalinux/project-spec/ ./
-echo CONFIG_pgmpa=y >> project-spec/configs/rootfs_config
-echo CONFIG_gdb=y >> project-spec/configs/rootfs_config
-echo CONFIG_gdbserver=y >> project-spec/configs/rootfs_config
-echo CONFIG_auto-login=y >> project-spec/configs/rootfs_config
+sed -i 's:# CONFIG_imagefeature-debug-tweaks is not set:CONFIG_imagefeature-debug-tweaks=y:g' project-spec/configs/rootfs_config
+sed -i 's:# CONFIG_auto-login is not set:CONFIG_auto-login=y:g' project-spec/configs/rootfs_config
+sed -i 's:# CONFIG_gdb is not set:CONFIG_gdb=y:g' project-spec/configs/rootfs_config
+sed -i 's:# CONFIG_gdbserver is not set:CONFIG_gdbserver=y:g' project-spec/configs/rootfs_config
 echo "RM_WORK_EXCLUDE += \"pgmpa\""  >> project-spec/meta-user/conf/petalinuxbsp.conf
 petalinux-build
-
