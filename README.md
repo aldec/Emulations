@@ -41,35 +41,37 @@
    wave sim:/design_1_wrapper/design_1_i/core_0/*
    ```
 ### Simulation without GDB
-7. After Linux prompt shows up in QEMU use following commands:
+7. After Linux login shows up in QEMU use: 'petalinux' and specify the password.
+
+8. After Linux prompt shows up in QEMU use following commands:
 
    ```sh
    cd /home/patalinux/pgmpa
-   ./pgmpa powernn/powernn_100
+   sudo ./pgmpa powernn/powernn_100
    ```
 ### Debugging with GDB
 
-7.1. After Linux prompt shows up in QEMU, start GDB using commands:
+8.1. After Linux prompt shows up in QEMU, start GDB using commands:
 
    ```sh
    cd /home/patalinux/pgmpa
-   gdb --args ./pgmpa powernn/powernn_100
+   sudo gdb --args ./pgmpa powernn/powernn_100
    ```
 
-7.2. Once GDB finishes loading, insert a breakpoint. For example, let's place
+8.2. Once GDB finishes loading, insert a breakpoint. For example, let's place
    breakpoint at the end of the register clearing loop:
 
    ```gdb
    break 144
    ```
 
-7.3. Now, run the program:
+8.3. Now, run the program:
 
    ```gdb
    run
    ```
 
-7.4. The program should print names of the cleared registers and stop at the
+8.4. The program should print names of the cleared registers and stop at the
    breakpoint. Switch to Riviera and pause the simulation using the "STOP"
    button or the Ctrl+Shift+C key combination. This should generate the waveform
    of the operation.
@@ -77,7 +79,7 @@
    **NOTE** Until the the simulation is resumed, Linux running inside QEMU will
    be frozen and keyboard input will not be processed.
 
-7.5. Press the green "play" button in Riviera, or press the Shift+F5 key combination to
+8.5. Press the green "play" button in Riviera, or press the Shift+F5 key combination to
    resume the simulation. Switch to the QEMU window again continue running the
    program:
 
@@ -85,6 +87,6 @@
    continue
    ```
 ###
-8.   When `Finish PROG` appears on the screen, press any key. The program should
+9.   When `Finish PROG` appears on the screen, press any key. The program should
    print the result and finish. On the waveform in Riviera, `m00_axis_tdata`
    port should now display the transferred data.
